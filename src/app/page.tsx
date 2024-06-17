@@ -1,4 +1,7 @@
+"use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 import loginImg from "../../public/assets/search_login.png";
 import { Button } from "@/components/ui/button";
 import { ChevronsRight } from "lucide-react";
@@ -6,10 +9,12 @@ import { ChevronsRight } from "lucide-react";
 import Spline from "@splinetool/react-spline/next";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <div className="flex h-screen w-screen items-center justify-center space-x-8 bg-teal-50">
       {/*fondo*/}
-      <div className="flex flex-col items-center justify-center space-y-4 border-b ml-8 rounded-3xl border-gray-200 bg-white px-4 py-9 pt-8 text-center sm:px-16">
+      <div className="flex flex-col items-center justify-center space-y-4 border-b ml-8 rounded-3xl border-gray-200 bg-white shadow-sm shadow-slate-400 px-4 py-9 pt-8 text-center sm:px-16">
         {/*primer card*/}
         <h1 className="text-3xl font-semibold leading-snug tracking-tight text-gray-800 lg:text-3xl lg:leading-tight xl:text-4xl xl:leading-tight dark:text-white">
           Un gusto tenerte por aquí,
@@ -19,7 +24,7 @@ export default function Home() {
           conocimiento en éxito
         </p>
         <div className="flex flex-col space-y-4">
-          <Button className="text-lg border-slate-300 group" variant="outline">
+          <Button className="text-lg border-slate-300 group" variant="outline" onClick={() => router.push('/student')}>
             Inicia sesión como <p className="font-bold">&nbsp; Alumno</p>
             <ChevronsRight className="ml-2 h-4 w-4 group-hover:animate-bounceX" color="#14b8a6" />
           </Button>
