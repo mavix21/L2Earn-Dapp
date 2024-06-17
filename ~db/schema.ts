@@ -36,8 +36,8 @@ export const courses = pgTable('courses', {
 });
 
 export const modules = pgTable('modules', {
-  id: serial('id').primaryKey(),
-  courseId: integer('id')
+  id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+  courseId: uuid('course_id')
     .notNull()
     .references(() => courses.id),
   title: varchar('title', { length: 50 }).notNull(),
@@ -47,18 +47,36 @@ export const modules = pgTable('modules', {
   updatedAt: timestamp('updatedAt'),
 });
 
-export const lessons = pgTable('lessons', {
-  id: serial('id').primaryKey(),
-  moduleId: integer('module_id')
-    .notNull()
-    .references(() => modules.id),
-  title: varchar('title', { length: 50 }).notNull(),
-  videoUrl: varchar('video_url', { length: 256 }).default(''),
-  isActive: boolean('is_active').default(true),
-  isPaid: boolean('is_paid').default(true),
-  createdAt: timestamp('createdAt').default(sql`now()`),
-  updatedAt: timestamp('updatedAt'),
-  nextLessonId: integer('next_lesson_id').references(
-    (): AnyPgColumn => lessons.id,
-  ),
-});
+export const lessons = pgTable(
+  'lessons',
+  {
+    id: serial('id').primaryKey(),
+    moduleId: uuid('module_id')
+      .notNull()
+      .references(() => modules.id),
+    title: varchar('title', { length: 50 }).notNull(),
+    details: text('details').default(''),
+    videoUrl: varchar('video_url', { length: 1024 }).default(''),
+    isActive: boolean('is_active').default(true),
+    isPaid: boolean('is_paid').default(true),
+    orderNumber: integer('order_number'),
+    nextOrderNumber: integer('next_order_number').references(
+      (): AnyPgColumn => lessons.orderNumber,
+    ),
+    createdAt: timestamp('created_at').default(sql`now()`),
+    updatedAt: timestamp('updated_at'),
+  },
+  // (table) => {
+  //   return {
+  //     courseModuleReference: foreignKey({
+  //       columns: [table.courseId, table.moduleId],
+  //       foreignColumns: [modules.courseId, modules.id],
+  //     }),
+  //     pk: primaryKey({ columns: [table.courseId, table.moduleId, table.id] }),
+  //     parentReference: foreignKey({
+  //       columns: [table.courseId, table.moduleId, table.nextLessonId],
+  //       foreignColumns: [table.courseId, table.moduleId, table.id],
+  //     }),
+  //   };
+  // },
+);
