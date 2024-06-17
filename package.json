@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "db:generate": "drizzle-kit generate --dialect postgresql --schema=./~db/schema.ts --out=./~db/migrations",
     "db:migrate": "node ./~db/migrate.ts",
     "build": "next build",
@@ -13,6 +13,7 @@
   "dependencies": {
     "@neondatabase/serverless": "^0.9.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "@vercel/postgres": "^0.8.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
