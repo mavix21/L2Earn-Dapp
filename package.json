@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
+    "db:generate": "drizzle-kit generate --dialect postgresql --schema=./~db/schema.ts --out=./~db/migrations",
+    "db:migrate": "npm run ./src/db/migrate.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
