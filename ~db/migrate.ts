@@ -14,7 +14,7 @@ if (!databaseUrl) {
   throw new Error('No connection string provided');
 }
 
-const db = drizzle(sql);
+export const db = drizzle(sql);
 
 const main = async () => {
   try {
