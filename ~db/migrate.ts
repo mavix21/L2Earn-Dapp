@@ -1,18 +1,18 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-// Drizzle example with the Neon serverless driver
-import { neon } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-http';
-import { migrate } from 'drizzle-orm/neon-http/migrator';
+import { sql } from '@vercel/postgres';
 
-const databaseUrl = process.env.DATABASE_URL;
+// import { neon } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/vercel-postgres';
+
+import { migrate } from 'drizzle-orm/vercel-postgres/migrator';
+
+const databaseUrl = process.env.POSTGRES_URL;
 
 if (!databaseUrl) {
   throw new Error('No connection string provided');
 }
-
-const sql = neon(databaseUrl);
 
 const db = drizzle(sql);
 

@@ -1,6 +1,5 @@
 import { sql } from 'drizzle-orm';
 import {
-  AnyPgColumn,
   boolean,
   integer,
   numeric,
@@ -28,9 +27,9 @@ export const courses = pgTable('courses', {
     sql`0.0::numeric`,
   ),
   difficulty: difficulties('difficulty').default('beginner'),
-  isPublished: boolean('isPublished').default(false),
-  isPaid: boolean('is_paid').default(true),
-  isActive: boolean('is_active').default(true),
+  isPublished: boolean('is_published').notNull().default(true),
+  isPaid: boolean('is_paid').notNull().default(true),
+  isActive: boolean('is_active').notNull().default(true),
   createdAt: timestamp('created_at').default(sql`now()`),
   updatedAt: timestamp('updated_at'),
 });
@@ -43,8 +42,8 @@ export const modules = pgTable('modules', {
   title: varchar('title', { length: 50 }).notNull(),
   summary: text('summary').default(''),
   isActive: boolean('is_active').default(true),
-  createdAt: timestamp('createdAt').default(sql`now()`),
-  updatedAt: timestamp('updatedAt'),
+  createdAt: timestamp('created_at').default(sql`now()`),
+  updatedAt: timestamp('updated_at'),
 });
 
 export const lessons = pgTable(
@@ -59,10 +58,7 @@ export const lessons = pgTable(
     videoUrl: varchar('video_url', { length: 1024 }).default(''),
     isActive: boolean('is_active').default(true),
     isPaid: boolean('is_paid').default(true),
-    orderNumber: integer('order_number'),
-    nextOrderNumber: integer('next_order_number').references(
-      (): AnyPgColumn => lessons.orderNumber,
-    ),
+    order: integer('order').notNull(),
     createdAt: timestamp('created_at').default(sql`now()`),
     updatedAt: timestamp('updated_at'),
   },
