@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "db:generate": "drizzle-kit generate --dialect postgresql --schema=./~db/schema.ts --out=./~db/migrations",
-    "db:migrate": "npm run ./src/db/migrate.ts",
+    "db:migrate": "node ./~db/migrate.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -15,6 +15,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
     "drizzle-orm": "^0.31.2",
     "lucide-react": "^0.395.0",
     "next": "14.2.4",
@@ -33,6 +34,7 @@
     "drizzle-kit": "^0.22.7",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.15.5",
     "typescript": "^5"
   }
 }
