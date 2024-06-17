@@ -1,5 +1,20 @@
+"use client"
+
+import Curso from "@/components/courses/page";
+import { Header } from "./header";
+import { useAccount, useApi } from "@gear-js/react-hooks";
+import { useEffect, useState } from 'react';
+
+import dotenv from "dotenv";
+import { withProviders } from "./account/hocs";
+import { App } from "@/components/shared/conf";
+
+dotenv.config();
+
 export default function StudentDashboard() {
+
   return (
+
     <header>
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 border-b">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
@@ -20,12 +35,13 @@ export default function StudentDashboard() {
             >
               Log in
             </a>
-            <a
+            {/* <a
               href="#"
               className="text-white bg-emerald-700-700 hover:bg-emerald-800 focus:ring-4 focus:ring-emerald-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-emerald-600 dark:hover:bg-emerald-700 focus:outline-none dark:focus:ring-emerald-800"
             >
               Get started
-            </a>
+            </a> */}
+            <App/>
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
@@ -41,9 +57,9 @@ export default function StudentDashboard() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
               <svg
@@ -53,9 +69,9 @@ export default function StudentDashboard() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </button>
