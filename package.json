@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
-    "db:generate": "drizzle-kit generate --dialect postgresql --schema=./~db --out=./~db/migrations",
-    "db:migrate": "node ./~db/migrate.ts",
+    "dev": "next dev",
+    "db:generate": "drizzle-kit generate --dialect postgresql --schema=./src/server/db/schema --out=./src/server/db/migrations",
+    "db:migrate": "node src/server/db/migrate.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

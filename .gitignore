@@ -37,7 +37,7 @@ yarn-error.log*
 next-env.d.ts
 
 #migrations
-src/server/db/migrations/
+src/server/db/migrations/**/*
 
 yarn.lock
 package-lock.json

@@ -19,7 +19,7 @@ export const db = drizzle(sql);
 const main = async () => {
   try {
     await migrate(db, {
-      migrationsFolder: '~db/migrations',
+      migrationsFolder: 'src/db/migrations',
     });
 
     console.log('Migration successful');
