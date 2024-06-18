@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useState } from 'react';
 import { useRouter } from "next/navigation";
 
 import loginImg from "../../public/assets/search_login.png";
@@ -9,7 +10,13 @@ import { ChevronsRight } from "lucide-react";
 import Spline from "@splinetool/react-spline/next";
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  const handleClick = () => {
+    setLoading(true);
+    router.push('/student');
+  };
 
   return (
     <div className="flex h-screen w-screen items-center justify-center space-x-8 bg-teal-50">
@@ -24,9 +31,45 @@ export default function Home() {
           conocimiento en éxito
         </p>
         <div className="flex flex-col space-y-4">
-          <Button className="text-lg border-slate-300 group" variant="outline" onClick={() => router.push('/student')}>
-            Inicia sesión como <p className="font-bold">&nbsp; Alumno</p>
+          {/* <Button className="text-lg border-slate-300 group" variant="outline" onClick={handleClick}
+          //  onClick={() => router.push('/student')}
+          >
+             Inicia sesión como <p className="font-bold">&nbsp; Alumno</p> 
             <ChevronsRight className="ml-2 h-4 w-4 group-hover:animate-bounceX" color="#14b8a6" />
+          </Button> */}
+          <Button
+            className="text-lg border-slate-300 group"
+            variant="outline"
+            onClick={handleClick}
+            disabled={loading} // Deshabilitar el botón mientras carga
+          >
+            {loading ? (
+              <div className="flex items-center">
+                <svg
+                  className="animate-spin h-5 w-5 mr-3 ..."
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8z"
+                  ></path>
+                </svg>
+              </div>
+            ) : (
+              <>
+                Inicia sesión como <p className="font-bold">&nbsp; Alumno</p>
+                <ChevronsRight className="ml-2 h-4 w-4 group-hover:animate-bounceX" color="#14b8a6" />
+              </>
+            )}
           </Button>
           <Button className="text-lg border-slate-300 group" variant="outline">
             Inicia sesión como <p className="font-bold">&nbsp; Instructor</p>
