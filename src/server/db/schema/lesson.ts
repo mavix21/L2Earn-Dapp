@@ -9,7 +9,7 @@ import {
   uuid,
   varchar,
 } from 'drizzle-orm/pg-core';
-import { modules } from './index';
+import { modules } from '.';
 
 const lessons = pgTable(
   'lessons',

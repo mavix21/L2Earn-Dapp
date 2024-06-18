@@ -7,7 +7,8 @@ import {
   uuid,
   varchar,
 } from 'drizzle-orm/pg-core';
-import { courses } from './index';
+import { courses } from '.';
+import { lessons } from '.';
 
 const modules = pgTable('modules', {
   id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
@@ -21,11 +22,12 @@ const modules = pgTable('modules', {
   updatedAt: timestamp('updated_at'),
 });
 
-export const moduleRelations = relations(modules, ({ one }) => ({
+export const moduleRelations = relations(modules, ({ one, many }) => ({
   course: one(courses, {
     fields: [modules.courseId],
     references: [courses.id],
   }),
+  lessons: many(lessons),
 }));
 
 export default modules;

@@ -1,4 +1,4 @@
-import { sql } from 'drizzle-orm';
+import { relations, sql } from 'drizzle-orm';
 import {
   boolean,
   numeric,
@@ -9,6 +9,7 @@ import {
   uuid,
   varchar,
 } from 'drizzle-orm/pg-core';
+import { modules } from '.';
 
 export const difficulties = pgEnum('difficulty', [
   'beginner',
@@ -31,5 +32,9 @@ const courses = pgTable('courses', {
   createdAt: timestamp('created_at').default(sql`now()`),
   updatedAt: timestamp('updated_at'),
 });
+
+export const coursesRelations = relations(courses, ({ many }) => ({
+  modules: many(modules),
+}));
 
 export default courses;
