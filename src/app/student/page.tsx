@@ -1,15 +1,15 @@
 "use client"
 
-import Curso from "@/components/courses/page";
-import { Header } from "./header";
+// import Curso from "@/components/courses/page";
+// import { Header } from "./header";
 import { useAccount, useApi } from "@gear-js/react-hooks";
 import { useEffect, useState } from 'react';
 
 import dotenv from "dotenv";
-import { withProviders } from "./account/hocs";
-import { App } from "@/components/shared/conf";
+// import { withProviders } from "./account/hocs";
+// import { App } from "@/components/shared/conf";
 
-dotenv.config();
+//dotenv.config();
 
 export default function StudentDashboard() {
 
@@ -41,7 +41,7 @@ export default function StudentDashboard() {
             >
               Get started
             </a> */}
-            <App/>
+            {/* <App/> */}
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
